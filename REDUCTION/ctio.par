@@ -43,7 +43,7 @@ minflatval: 1d4,       ; minimum acceptable value for flats
 slicerflat:  1,                      ; set this to 1 to use the narrow slit + shift & width change for order finding
 pkcoefs: [26.4117,34.9785,0.114412,0.00182212],  ;yt=2 poly coefs of peak maxima @center y(iord), unbinned pixels
 pkcoefs1: [26.4517d,35.0451d,0.112029d,0.00188384d], ;use this for data between 120302 - 120501 (torrent logic problem)
-nords:  62,                    ; number of orders to extract
+nords:  75,                    ; number of orders to extract
 modes: ['narrow','slicer','slit','fiber','narrow'],  ; observing modes 
 ;xwids: [6,12,6,5],             ; extraction width, binned pixels 
 xwids: [8,12,8,5,18],             ; extraction width, binned pixels 
