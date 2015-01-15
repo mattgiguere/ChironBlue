@@ -1,12 +1,12 @@
 {redpar,                       ; named structure, passed by reference
 rootdir: '/',             ; root directory. All other paths are relative to rootdir
-logdir:  'tous/mir7/logsheets/',         ; log sheets 
-logstdir:  'tous/mir7/logstructs/',         ; log sheets 
-iodspecdir: 'tous/mir7/iodspec/',        ; reduced spectra in RDSK/WRDSK format
-plotsdir: '/home/matt/Sites/chi/red/plots/', ; directory to put encapsulated postscript and PNG plots
-fitsdir:    'tous/mir7/fitspec/',        ; reduced spectra in FITS format
-thiddir:    'tous/mir7/thid/wavfile/',   ; wav saved in in *.dat files, not used
-thidfiledir: 'tous/mir7/thid/thidfile/', ; thid saved in *.thid files
+logdir:  'tous/mir7/blue/logsheets/',         ; log sheets 
+logstdir:  'tous/mir7/blue/logstructs/',         ; log sheets 
+iodspecdir: 'tous/mir7/blue/iodspec/',        ; reduced spectra in RDSK/WRDSK format
+plotsdir: '/tous/mir7/blue/plots/', ; directory to put encapsulated postscript and PNG plots
+fitsdir:    'tous/mir7/blue/fitspec/',        ; reduced spectra in FITS format
+thiddir:    'tous/mir7/blue/thid/wavfile/',   ; wav saved in in *.dat files, not used
+thidfiledir: 'tous/mir7/blue/thid/thidfile/', ; thid saved in *.thid files
 rawdir: 'raw/mir7/',                ; raw files
 imdir:   'yymmdd/',            ; yymmdd/ image directory with raw night data (*)
 date:   'yymmdd',            ; yymmdd/ image directory with raw night data (*)
@@ -15,12 +15,11 @@ versiond:   'date',            ; systime when this file was created (*)
 versionn:   '3.0',            ; version of the reduction code
 prefix_tag: 'a',               ; for output filenames 
 prefix:  'chiyymmdd.',         ; file prefix (*)
-flatdir:  'tous/mir7/flats/',            ; summed flat fields
-biasdir:  'tous/mir7/medbias/',            ; median bias frames
+flatdir:  'tous/mir7/blue/flats/',            ; summed flat fields
+biasdir:  'tous/mir7/blue/medbias/',            ; median bias frames
 biasmode: 0,            ; 0: use median bias frame, 1: use median overscan row
-orderdir: 'tous/mir7/orders/',           ; order locations
-barydir:  'tous/CHIRON/bary/',             ; code for barycentric correction? 
-xtrim: [0,3150],             ; trim along line (cross-dispersion direction), UNBINNED pixels
+orderdir: 'tous/mir7/blue/orders/',           ; order locations
+xtrim: [0,4096],             ; trim along line (cross-dispersion direction), UNBINNED pixels
 ytrim: [601,3800],             ; vertical trim (along disp.), UNBINNED pixels yt=2
 readmodes:  ['fast','normal'], ; readout modes
 nlc: [[0, 0],[0, 0]], ;non-linearity coefs. [left,right] in fast and normal
