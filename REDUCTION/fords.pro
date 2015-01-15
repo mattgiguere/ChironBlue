@@ -50,6 +50,19 @@ if n_params() lt 3 then begin
 endif
 if n_elements(minreq) eq 0 then minreq = 0	;any number of orders will do
 
+if redpar.flatcombo then begin
+	print, 'KEYWORD FLATCOMBO SET.'
+	print, "Enter the image sequence number (e.g., '1148') of an O or B star to use for order finding."
+	obnm = ''
+	read, obnm
+	filenm = redpar.rootdir + redpar.rawdir + redpar.date + '/chi' + redpar.date + '.' + obnm + '.fits'
+	print, 'filename is: ', filenm
+	geom = chip_geometry(filenm, hdr=header, redpar=redpar)
+	blueim = getimage(filenm, redpar, header=header, geom=geom)
+	im += blueim
+endif
+
+
 print,'FORDS: Entering routine.'
 ;
 ;Define adjustable parameters. When choosing the degree of the polynomial
