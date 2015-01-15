@@ -56,23 +56,19 @@ thar_soln=thar_soln, getthid=getthid, mode = mode, obsnm=obsnm, $
 angstrom = '!6!sA!r!u!9 %!6!n'
 ctparfn = -1
 spawn, 'pwd', pwddir
-case pwddir of
-   '/home/matt/projects/CHIRON/QC': ctparfn = '/home/matt/projects/CHIRON/REDUCTION/ctio.par'
-   '/home/matt/projects/CHIRON/REDUCTION': ctparfn = '/home/matt/projects/CHIRON/REDUCTION/ctio.par'
-   '/tous/CHIRON/REDUCTION': ctparfn = '/tous/CHIRON/REDUCTION/ctio.par'
-   '/tous/CHIRON/QC': ctparfn = '/tous/CHIRON/REDUCTION/ctio.par'
-endcase
-if ctparfn eq -1 then begin
+if file_test('ctio.par') then begin
+   ctparfn = 'ctio.par'
+endif else begin
   print, '******************************************************'
   print, 'You must be running things from a different directory.'
   print, 'Your current working directory is: '
   print, pwddir
-  print, 'ctparfn has not set. '
-  print, 'Either changed your working directory, or modify the case'
-  print, 'statement above this line.'
+  print, 'ctparfn has not been set. '
+  print, 'Either changed your working directory, or modify the '
+  print, 'location of ctio.par above this line.'
   print, '******************************************************'
   stop
-endif
+endelse
 
 redpar = readpar(ctparfn)
 redpar.imdir = night+'/'  ; pass night into redpar
