@@ -30,33 +30,10 @@ skipbary = skipbary, $
 skipdistrib = skipdistrib, $
 skipqc = skipqc
 
-
-if keyword_set(help) then begin
-	print, '*************************************************'
-	print, '*************************************************'
-	print, '        HELP INFORMATION FOR chi_reduce_all'
-	print, 'KEYWORDS: '
-	print, ''
-	print, 'HELP: Use this keyword to print all available arguments'
-	print, ''
-	print, ''
-	print, ''
-	print, '*************************************************'
-	print, '                     EXAMPLE                     '
-	print, "IDL>"
-	print, 'IDL> '
-	print, '*************************************************'
-	stop
-endif
-
 print, 'Started @: ', systime()
 spawn, 'hostname', host
 
-if host eq 'ctimac1.ctio.noao.edu' then begin
-  rawdir = '/mir7/raw/'
-endif else begin
-  rawdir = '/raw/mir7/'
-endelse
+rawdir = '/raw/mir7/'
 lfn = '/tous/mir7/logsheets/20'+strmid(date, 0, 2)+'/'+strt(date)+'.log'
 
 ;This part gets the image prefix:
@@ -92,47 +69,6 @@ for i=0, 3 do begin
   print, '*************************************************'
   sorting_hat,date,run=pref,mode=modearr[i],/reduce,/getthid,/iod2fits
 endfor
-
-if ~keyword_set(skipbary) then begin
-  print, '**************************************************'
-  print, 'NOW ADDING OBSERVATIONS TO THE BARYLOG...'
-  print, '**************************************************'
-
-  ;No Dot Prefix (ndpref) - The prefix without the dot (e.g. 'chi120402')
-  ndpref = strmid(pref, 0, strlen(pref)-1)
-  qbarylog, lfn, prefix=ndpref
-  chi_barystruct, asciifn='/tous/mir7/bary/qbcvel.ascii', $
-  				structfn='/tous/mir7/bary/qbcvel.dat'
-endif ;~KW(skipbary)
-
-
-if keyword_set(doppler) then begin
-  print, '**************************************************'
-  print, 'NOW RUNNING THE DOPPLER CODE...'
-  print, '**************************************************'
-
-  print, '**********************'
-  print, 'NARROW SLIT DOPPLER CODE'
-  print, '**********************'
-  sorting_hat, date, run=run, $
-  mode='narrow', $
-  /doppler, doptag='t'
-
-  print, '**********************'
-  print, 'SLICER DOPPLER CODE'
-  print, '**********************'
-  ;sorting_hat, date, run=run, $
-  ;mode='slicer', $
-  ;/doppler, doptag = 'ks'
-endif ;KW(doppler)
-
-if ~keyword_set(skipqc) then begin
-  print, '******************************'
-  print, 'NOW RERUNNING QC'
-  print, '******************************'
-  print, systime()
-  chi_quality, date=date
-endif;KW(skipqc)
 
 print, 'Finished @: ', systime()
 
