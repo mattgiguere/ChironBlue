@@ -13,11 +13,21 @@ else
    set IDLDIR='/Applications/itt/idl/idl'
 endif
 
+setenv IDL_DIR $IDLDIR
+
 #The directory of the main reduction code repository:
 set PROPATH = ${MDIR}'projects/ChironBlue'
 
 #Add the main reduction code repository to the IDL path:
 setenv IDL_PATH ${PROPATH}
+
+#Add my idlutil repository:
+setenv IDL_PATH ${IDL_PATH}:+${MDIR}projects/idlutil
+
+#Last item to add should be IDL builtin library
+setenv IDL_PATH ${IDL_PATH}:+${IDLDIR}
+
+setenv IDL_STARTUP ${PROPATH}/.idl_startup.pro
 
 cd $PROPATH
 idl
