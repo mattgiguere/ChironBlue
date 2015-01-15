@@ -16,7 +16,7 @@ endif
 setenv IDL_DIR $IDLDIR
 
 #The directory of the main reduction code repository:
-set PROPATH = ${MDIR}'projects/ChironBlue'
+set PROPATH = ${MDIR}'projects/ChironBlue/REDUCTION'
 
 #Add the main reduction code repository to the IDL path:
 setenv IDL_PATH ${PROPATH}
