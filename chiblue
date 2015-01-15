@@ -27,6 +27,9 @@ setenv IDL_PATH ${IDL_PATH}:+${MDIR}projects/idlutil
 #Add IDLAstro repository:
 setenv IDL_PATH ${IDL_PATH}:+${MDIR}projects/IDLAstro
 
+#Add MPFIT repository:
+setenv IDL_PATH ${IDL_PATH}:+${MDIR}projects/mpfit
+
 #Last item to add should be IDL builtin library
 setenv IDL_PATH ${IDL_PATH}:+${IDLDIR}
 
