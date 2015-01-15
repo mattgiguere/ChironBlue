@@ -10,3 +10,7 @@ Repository for the CHIRON Reduction code extended to the blue.
 - at the command line, type `./chiblue`
 - IDL should start up without error
 - type `chi_reduce_all, date='yymmdd'` to reduce data
+
+###Dependencies
+- IDL 8.1 or later. `ChironBlue` will work with older versions of IDL, but you will need to modify `chiblue` to specify the path to IDL.
+- [`idlutil`](https://github.com/mattgiguere/idlutils): a repository of handy routines
