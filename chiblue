@@ -1,0 +1,25 @@
+#!/bin/csh
+
+#PURPOSE:
+#To setup IDL properly to run the CHIRON reduction code 
+#with all dependencies included in the path.
+
+set MDIR = ${HOME}'/'
+
+#Determine if machine has IDL 8.1 or IDL 8.2:
+if (-e /Applications/exelis) then
+   set IDLDIR='/Applications/exelis/idl'
+else
+   set IDLDIR='/Applications/itt/idl/idl'
+endif
+
+#The directory of the main reduction code repository:
+set PROPATH = ${MDIR}'projects/ChironBlue'
+
+#Add the main reduction code repository to the IDL path:
+setenv IDL_PATH ${PROPATH}
+
+cd $PROPATH
+idl
+
+
