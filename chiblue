@@ -24,6 +24,9 @@ setenv IDL_PATH ${PROPATH}
 #Add my idlutil repository:
 setenv IDL_PATH ${IDL_PATH}:+${MDIR}projects/idlutil
 
+#Add IDLAstro repository:
+setenv IDL_PATH ${IDL_PATH}:+${MDIR}projects/IDLAstro
+
 #Last item to add should be IDL builtin library
 setenv IDL_PATH ${IDL_PATH}:+${IDLDIR}
 
