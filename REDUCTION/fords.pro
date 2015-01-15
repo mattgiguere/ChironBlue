@@ -127,7 +127,7 @@ if debug ge 1 and debug le 2 then begin
 endif;debug plots
 
 if debug gt 0  then begin 
-   ps_open, nextnameeps(fdir+'/RdctnOrdLocs'), /encaps, /color
+   ps_open, nextnameeps('~/Desktop/RdctnOrdLocs'), /encaps, /color
    yy = [0,max(swa)]
    plot, swa, /xsty, /ysty, $
    xtitle='Cross Dispersion Direction', $
@@ -135,7 +135,7 @@ if debug gt 0  then begin
    for kk=0,nord-1 do oplot, pk[kk]*[1,1], yy, li=2, color=80
    for kk=0,nord-1 do oplot, pk[kk]*[1,1] + smbox, yy, li=2, color=50
    for kk=0,nord-1 do oplot, pk[kk]*[1,1] - smbox, yy, li=2, color=250
-   stop
+   ps_close
    if debug gt 2 then stop, 'FORDS DEBUG: FIRST SWATH plot. Press .C to continue'
 endif
 if redpar.debug ge 1 and redpar.debug le 2 then ps_close
@@ -149,6 +149,8 @@ IF debug gt 3 THEN BEGIN
    PRINT, 'CLICK IN THE CENTER OF EACH ORDER.'
    PRINT, "(Y VALUE DOESN'T MATTER)"
    PRINT, '***********************************************'
+   windims = get_screen_size()
+   window, xsize=0.95*windims[0], ysize=0.5*windims[1], xpos=0, ypos=0.1*windims[1]
    yy = [0,max(swa)]
    plot, swa, /xsty, /ysty, $
    xtitle='Cross Dispersion Direction', $
@@ -280,7 +282,7 @@ FOR direction = -1, 1, 2 DO BEGIN
 		 endelse
 
 		 edge:                     ;jump here to skip a swath
-		 if debug ge 3 then stop
+		 ;if debug ge 3 then stop
 	  endfor		;end order loop
 
 	  ; AT Oct 7 2011: diagnostic of swath peaks
