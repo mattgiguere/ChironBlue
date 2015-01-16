@@ -59,6 +59,7 @@ if redpar.flatcombo then begin
 	print, 'filename is: ', filenm
 	geom = chip_geometry(filenm, hdr=header, redpar=redpar)
 	blueim = getimage(filenm, redpar, header=header, geom=geom)
+	imorig = im
 	im += blueim
 endif
 
@@ -466,6 +467,10 @@ if debug gt 0 then begin
   
   if debug ge 2 then stop, 'FORDS: central order cut. Press .C to continue'
 endif;debug>0
+
+if redpar.flatcombo then begin
+	im = imorig
+endif
 
   return
 end
