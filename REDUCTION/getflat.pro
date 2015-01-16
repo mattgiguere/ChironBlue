@@ -58,7 +58,7 @@ for j = 0, nord-1 do begin      ;row by row polynomial
   ;now mask out extremely bad regions that affect the fit (e.g. the debris 
   ;at the center of the chip):
   if redpar.echrefmask and j gt 60 then begin
-     stronger = where(s ge 0.8*ss1 and (ix lt 3080 or ix gt 3108))
+     stronger = where(s ge 0.8*ss1 and (ix lt redpar.echrefdom[0] or ix gt redpar.echrefdom[1]))
   endif else begin
      stronger = where(s ge 0.8*ss1)
   endelse
