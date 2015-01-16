@@ -39,17 +39,37 @@ endif;debug plots
 
 if redpar.flatnorm le 1 then begin
 for j = 0, nord-1 do begin      ;row by row polynomial
-  s = sp[*, j]          
-  strong = where(s ge threshold*max(s), nstrong) ; strong signal
+  s = sp[*, j]
+  if redpar.echrefmask and j gt 60 then begin
+  	 threshold = 0
+     strong = where(s ge threshold*max(s) and (ix lt 3080 or ix gt 3108), nstrong) ; strong signal
+  endif else begin
+     strong = where(s ge threshold*max(s), nstrong) ; strong signal
+  endelse
   if nstrong lt order+1 then stop, 'GETFLAT: No signal, stopping'
   cf = poly_fit(ix[strong],s[strong],order, yfit=yfit) 
   ss1 = poly(ix,cf)
+  ;if j gt 60 then begin
+	;  plot, ix, s, /xsty, /ysty
+	 ; oplot, ix, ss1
+	  ;stop
+  ;endif
   
   ;now mask out extremely bad regions that affect the fit (e.g. the debris 
   ;at the center of the chip):
-  stronger = where(s ge 0.8*ss1)
+  if redpar.echrefmask and j gt 60 then begin
+     stronger = where(s ge 0.8*ss1 and (ix lt 3080 or ix gt 3108))
+  endif else begin
+     stronger = where(s ge 0.8*ss1)
+  endelse
   cf2 = poly_fit(ix[stronger],s[stronger],order, yfit=yfit) 
   ss = poly(ix,cf2)
+  ;if j gt 60 then begin
+	;  plot, ix, s, /xsty, /ysty
+	;  oplot, ix, ss
+	;  stop
+  ;endif
+  if j gt 60 then stop
   
   ;	  ss = median(s, medwidth)       ;median smooth the orders
  ; zeroes = where (ss eq 0., nz)  ;make sure we don-t divide by 0
@@ -62,8 +82,8 @@ for j = 0, nord-1 do begin      ;row by row polynomial
   ;contf, s, ssc, nord=6, frac=0.5, sbin=30
 ;stop
 if redpar.debug ge 1 then begin
-  plot, s, li=1, color=50, title='Order '+strt(j), /xsty
-  oplot, ss
+  plot, s, li=1, color=0, title='Order '+strt(j), /xsty
+  oplot, ss, color=50
   loadct, 39, /silent
   oplot, yfit, color=250
   print, j
