@@ -45,7 +45,7 @@ minflatval: 1d4,       ; minimum acceptable value for flats
 ;set this to mask out the reflection off the echelle grating window when fitting
 ;a 6th order polynomial model to the spectrum:
 echrefmask: 1,
-echrefdom: [3080, 3108], ;the domain of the echelle window reflection
+echrefdom: [3030, 3150], ;the domain of the echelle window reflection
 slicerflat:  1,                      ; set this to 1 to use the narrow slit + shift & width change for order finding
 pkcoefs: [25.078635,35.272955,0.10201905,0.0019731285],  ;yt=2 poly coefs of peak maxima @center y(iord), unbinned pixels
 pkcoefs1: [26.4517d,35.0451d,0.112029d,0.00188384d], ;use this for data between 120302 - 120501 (torrent logic problem)
