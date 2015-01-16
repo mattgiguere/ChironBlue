@@ -303,6 +303,7 @@ ut = gettime(mdpt) ; floating-point hours, >24h in the morning
 			 ;thid, t, 64., 64.*[8797d,8898d], wvc, thid, init=initwvc, /orev 
 			 ;for slicer mode:
 			 ;thid, t, 65., 65.*[8662.4d,8761.9d], wvc, thid, init=initwvc, /orev 
+			 ;note: both slicer and narrow were tested and work w. ChironBlue
 			 
 			 if thid.nlin lt 700d then begin
 			   print, 'CRAPPY FIT TO THE THAR! INTERVENTION NEEDED!'
