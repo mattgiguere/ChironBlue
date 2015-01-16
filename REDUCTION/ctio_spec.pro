@@ -109,11 +109,13 @@ for i=0, nords-1 do begin
 	 if file_test(fname) then spawn, 'mv '+fname+' '+nextnameeps(fname+'_old')
 	 ps_open, fname, /encaps, /color
   endif;debug plots
-  
+  idx = indgen(specsz[1])
+  if i ge 60 then idx = where(idx lt redpar.echrefdom[0] or idx gt redpar.echrefdom[1])
+  	
   if redpar.debug ge 1 then begin
 	plot, spec_o[*,i], title=redpar.prefix+redpar.seqnum+' Order '+strt(i)+' Extracted', /xsty, /ysty, ytitle='Flux'
 	plot, flat[*,i], title=redpar.date+' '+redpar.modes[redpar.mode]+' Mode Order '+strt(i)+' Flat', /xsty, /ysty, ytitle='Flux'
-	plot, spec[*,i], title=redpar.prefix+redpar.seqnum+' Order '+strt(i)+' Spec/Flat', /xsty, /ysty, $
+	plot, spec[idx,i], title=redpar.prefix+redpar.seqnum+' Order '+strt(i)+' Spec/Flat', /xsty, /ysty, $
 	xtitle='Dispersion Direction [pix]', ytitle='Flux'
   endif
   
@@ -121,6 +123,7 @@ for i=0, nords-1 do begin
 	 ps_close
 	 spawn, 'convert -density 200 '+fname+'.eps '+fname+'.png'
   endif
+  if i gt 70 then stop
 endfor
 
 

@@ -42,7 +42,7 @@ for j = 0, nord-1 do begin      ;row by row polynomial
   s = sp[*, j]
   if redpar.echrefmask and j gt 60 then begin
   	 threshold = 0
-     strong = where(s ge threshold*max(s) and (ix lt 3080 or ix gt 3108), nstrong) ; strong signal
+     strong = where(s ge threshold*max(s) and (ix lt redpar.echrefdom[0] or ix gt redpar.echrefdom[1]), nstrong) ; strong signal
   endif else begin
      strong = where(s ge threshold*max(s), nstrong) ; strong signal
   endelse
@@ -82,8 +82,9 @@ for j = 0, nord-1 do begin      ;row by row polynomial
   ;contf, s, ssc, nord=6, frac=0.5, sbin=30
 ;stop
 if redpar.debug ge 1 then begin
-  plot, s, li=1, color=0, title='Order '+strt(j), /xsty
-  oplot, ss, color=50
+  plot, ix, ss, color=0, /nodata, title='Order '+strt(j), /xsty
+  oplot, ix, s, li=1, color=0
+  oplot, ix, ss, color=50
   loadct, 39, /silent
   oplot, yfit, color=250
   print, j
