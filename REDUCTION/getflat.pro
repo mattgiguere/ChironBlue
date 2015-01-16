@@ -86,7 +86,7 @@ if redpar.debug ge 1 then begin
   oplot, ix, s, li=1, color=0
   oplot, ix, ss, color=50
   loadct, 39, /silent
-  oplot, yfit, color=250
+  oplot, ix[stronger], yfit, color=250
   print, j
   x1 = 0.2*n_elements(s)
   x2 = 0.7*n_elements(s)
