@@ -69,7 +69,6 @@ for j = 0, nord-1 do begin      ;row by row polynomial
 	;  oplot, ix, ss
 	;  stop
   ;endif
-  if j gt 60 then stop
   
   ;	  ss = median(s, medwidth)       ;median smooth the orders
  ; zeroes = where (ss eq 0., nz)  ;make sure we don-t divide by 0

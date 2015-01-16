@@ -115,7 +115,7 @@ for i=0, nords-1 do begin
   if redpar.debug ge 1 then begin
 	plot, spec_o[*,i], title=redpar.prefix+redpar.seqnum+' Order '+strt(i)+' Extracted', /xsty, /ysty, ytitle='Flux'
 	plot, flat[*,i], title=redpar.date+' '+redpar.modes[redpar.mode]+' Mode Order '+strt(i)+' Flat', /xsty, /ysty, ytitle='Flux'
-	plot, spec[idx,i], title=redpar.prefix+redpar.seqnum+' Order '+strt(i)+' Spec/Flat', /xsty, /ysty, $
+	plot, idx, spec[idx,i], title=redpar.prefix+redpar.seqnum+' Order '+strt(i)+' Spec/Flat', /xsty, /ysty, $
 	xtitle='Dispersion Direction [pix]', ytitle='Flux'
   endif
   
@@ -123,7 +123,6 @@ for i=0, nords-1 do begin
 	 ps_close
 	 spawn, 'convert -density 200 '+fname+'.eps '+fname+'.png'
   endif
-  if i gt 70 then stop
 endfor
 
 
