@@ -170,9 +170,11 @@ IF debug gt 3 THEN BEGIN
    xtitle='Cross Dispersion Direction', $
    ytitle='Counts in Central Swath'
    xeye = dblarr(n_elements(iord))
+   yeye = dblarr(n_elements(iord))
    for eyeord = 0, n_elements(xeye)-1 do begin
 	  cursor, xcur, ycur, /down
 	  xeye[eyeord] = xcur
+	  yeye[eyeord] = ycur
 	  print, eyeord, xcur, ycur
 	  oplot, [xcur,xcur], [ycur, ycur], ps=8, color=230
    endfor
@@ -182,9 +184,12 @@ IF debug gt 3 THEN BEGIN
    oplot, iord, yfit, ps=8, color=230
    pkcoefs = res[0:3] * redpar.binning[0]
    pk = poly(iord,pkcoefs)/redpar.binning[0] ; default peaks in binned pixels, central swath
+   stop
+   #ps_open, nextnameeps('~/Desktop/RdctnOrdClicks'), /encaps, /color
    plot, swa, /xsty, /ysty, $
    xtitle='Cross Dispersion Direction', $
    ytitle='Counts in Central Swath'
+   oplot, xcur, ycur, ps=8, color=230
    for kk=0,nord-1 do oplot, pk[kk]*[1,1], yy, li=2, color=80
    PRINT, '***********************************************'
    PRINT, 'IF IT LOOKS GOOD ENTER THESE FOR PKCOEFS IN YOUR .PAR FILE'
@@ -193,6 +198,8 @@ IF debug gt 3 THEN BEGIN
 						 strt(pkcoefs[2]), ',', $
 						 strt(pkcoefs[3]), ']'
    PRINT, '***********************************************'
+   #ps_close
+   stop
 ENDIF;DEBUG>3 => REDO ORDER LOCATIONS FROM SCRATCH
 
 ;  nord = n_elements(pk)				;number of orders
